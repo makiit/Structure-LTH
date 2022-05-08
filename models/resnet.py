@@ -1,7 +1,8 @@
 import torch
 import torch.nn as nn
 from advertorch.utils import NormalizeByChannelMeanStd
-from torchvision.models.utils import load_state_dict_from_url
+import torch.utils.model_zoo as model_zoo
+
 
 from .conv import SparseConv2D
 
@@ -862,8 +863,7 @@ def resnet18_6(**kwargs):
 def _resnet(arch, block, layers, pretrained, progress, **kwargs):
     model = ResNet(block, layers, **kwargs)
     if pretrained:
-        state_dict = load_state_dict_from_url(model_urls[arch],
-                                            progress=progress)
+        state_dict = model_zoo.load_url(model_urls['resnet18'])
         model.load_state_dict(state_dict)
     return model
 
