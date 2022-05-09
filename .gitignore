@@ -1,0 +1,7 @@
+*.pyc
+data/
+datasets/
+.ipynb_checkpoints/
+pretrained_model/
+helpers/
+
